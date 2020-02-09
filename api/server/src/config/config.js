@@ -1,0 +1,46 @@
+require('dotenv').config();
+
+
+module.exports = {
+
+  // If using onine database
+  // development: {
+  //   use_env_variable: 'DATABASE_URL'
+  // },
+
+  development: {
+    database: 'energyapp_development',
+    username: process.env.DB_USER,
+    password: null,
+    host: '127.0.0.1',
+    dialect: 'postgres',
+    jwt: {
+      jwtSecret: process.env.JWT_SECRET || '$eCrEtdfsdgdfgdkjgdjafsdpowritrep',
+      jwtDuration: process.env.JWT_DURATION || '2 hours'
+    }
+  },
+
+  test: {
+    database: 'energyapp_test',
+    username: process.env.DB_USER,
+    password: null,
+    host: '127.0.0.1',
+    dialect: 'postgres',
+    jwt: {
+      jwtSecret: process.env.JWT_SECRET || '$eCrEt',
+      jwtDuration: process.env.JWT_DURATION || '2 hours'
+    }
+  },
+
+  production: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
+    jwt: {
+      jwtSecret: process.env.JWT_SECRET || '$eCrEt',
+      jwtDuration: process.env.JWT_DURATION || '2 hours'
+    }
+  }
+};
